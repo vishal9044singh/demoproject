@@ -1,8 +1,16 @@
 import React, { useState, useContext } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Alert} from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Alert } from 'react-native';
 import { UserContext } from '../context/userContext';
+import ForgotPasswordScreen from './ForgotPasswordScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import CreateAccountScreen from './createAccountScreen';
 
-export default function LoginScreen() {
+const Stack = createStackNavigator();
+
+function LoginComponent() {
+    const navigation = useNavigation();
     const userContext = useContext(UserContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -50,16 +58,28 @@ export default function LoginScreen() {
                 <TouchableOpacity style={styles.loginButton} onPress={handleLogin} activeOpacity={0.9}>
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
-                <Text >Forgot Password?</Text>
+                <Text style={styles.forgetPass} onPress={() => navigation.navigate('ForgotPasswordScreen')}>Forgot Password?</Text>
             </View>
 
             <View style={styles.newAccountContainer}>
-                <TouchableOpacity style={styles.newAccount} onPress={handleLogin} activeOpacity={0.9}>
+                <TouchableOpacity style={styles.newAccount} onPress={()=>navigation.navigate('CreateAccountScreen')} activeOpacity={0.9}>
                     <Text style={styles.newAccountText}>Create New Account</Text>
                 </TouchableOpacity>
             </View>
         </View>
     );
+}
+
+export default function LoginScreen() {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator >
+                <Stack.Screen name="LoginComponent" component={LoginComponent} options={{headerShown:false}}/>
+                <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} options={{title:'Reset Password'}} />
+                <Stack.Screen name="CreateAccountScreen" component={CreateAccountScreen} options={{title:'Create New Account'}}/>
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -76,6 +96,9 @@ const styles = StyleSheet.create({
         marginTop: 20,
         height: '100%',
         width: '100%'
+    },
+    forgetPass:{
+        textDecorationLine:'underline'
     },
     formContainer: {
         flex: 2,
