@@ -1,13 +1,28 @@
 import React, { useContext } from 'react';
-import { StyleSheet, Text, View,Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { UserContext } from '../context/userContext';
 
 export default function HomeScreen() {
-    const userContext = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
+
+    const handleLogout = () => {
+        Alert.alert('Confirmation', 'Are you sure you want to Logout!', [
+            {
+                text: 'Cancel',
+                // onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+            },
+            {
+                text: 'OK',
+                onPress: () => setUser(false)
+            },
+        ]);
+    }
+
     return (
         <View style={styles.container}>
             <Text>This is HomeScreen</Text>
-            <Button title='Logout' onPress={()=>userContext.setUser(false)}/>
+            <Button title='Logout' onPress={handleLogout} />
         </View>
     );
 }
