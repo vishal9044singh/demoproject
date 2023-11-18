@@ -6,7 +6,7 @@ import LoginScreen from '../screens/LoginScreen';
 
 export default function HomePage() {
     const { user } = useContext(UserContext);
-    return user ? (<HomeScreen />) : (<LoginScreen />)
+    return user ? <HomeScreen /> : <LoginScreen />
 }
 
 const styles = StyleSheet.create({
