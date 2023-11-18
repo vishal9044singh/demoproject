@@ -6,7 +6,6 @@ import ForgotPasswordScreen from './ForgotPasswordScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import KeyboardAvoidingComponent from './KeyboardAvoidingView';
 import CreateAccountScreen from './CreateAccountScreen';
 
 const Stack = createStackNavigator();
@@ -76,7 +75,6 @@ export default function LoginScreen() {
                 <Stack.Screen name="LoginComponent" component={LoginComponent} options={{ headerShown: false }} />
                 <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} options={{ title: 'Reset Password' }} />
                 <Stack.Screen name="CreateAccountScreen" component={CreateAccountScreen} options={{ title: 'Create New Account' }} />
-                <Stack.Screen name="KeyboardAvoidingComponent" component={KeyboardAvoidingComponent} options={{ title: 'Create New Account' }} />
             </Stack.Navigator>
         </NavigationContainer>
     )
