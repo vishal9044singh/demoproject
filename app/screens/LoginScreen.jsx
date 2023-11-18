@@ -17,7 +17,7 @@ export default function LoginScreen() {
         else if (!password) {
             Alert.alert('Invalid Details', 'Please Provide Password!');
         }
-        else if (username == 'vishal' && password == '123456') {
+        else if (username == 'Vishal' && password == '123456') {
             userContext.setUser(true)
         }
         else {
