@@ -1,9 +1,20 @@
 import React, { useContext } from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { UserContext } from '../context/userContext';
 
 export default function HomeScreen() {
     const { setUser } = useContext(UserContext);
+
+    const hitLogout = async ()=>{
+        try{
+            await AsyncStorage.removeItem('access_token');
+            setUser(false)
+        }
+        catch(e){
+            
+        }
+    }
 
     const handleLogout = () => {
         Alert.alert('Confirmation', 'Are you sure you want to Logout!', [
@@ -14,7 +25,7 @@ export default function HomeScreen() {
             },
             {
                 text: 'OK',
-                onPress: () => setUser(false)
+                onPress: () => hitLogout()
             },
         ]);
     }

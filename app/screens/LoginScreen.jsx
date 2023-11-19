@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ForgotPasswordScreen from './ForgotPasswordScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createStackNavigator } from '@react-navigation/stack';
 import CreateAccountScreen from './CreateAccountScreen';
 
@@ -12,26 +13,33 @@ const Stack = createStackNavigator();
 
 function LoginComponent() {
     const navigation = useNavigation();
-    const userContext = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    console.log('value of userContext is', userContext)
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         console.log('Username:', username);
         console.log('Password:', password);
-        if (!username) {
-            Alert.alert('Invalid Details', 'Please Provide Username!');
+        try {
+            if (!username) {
+                Alert.alert('Invalid Details', 'Please Provide Username!');
+            }
+            else if (!password) {
+                Alert.alert('Invalid Details', 'Please Provide Password!');
+            }
+            else if (username == 'Vishal' && password == '123456') {
+                let res = await AsyncStorage.setItem('access_token','user');
+                console.log('value of logged in res in asyncstorage is',res);
+                setUser(true)
+            }
+            else {
+                Alert.alert('Invalid Username/Password', 'Please Provide Valid Credentials!')
+            }
         }
-        else if (!password) {
-            Alert.alert('Invalid Details', 'Please Provide Password!');
+        catch (e) {
+            console.log('Got error in login', e);
         }
-        else if (username == 'Vishal' && password == '123456') {
-            userContext.setUser(true)
-        }
-        else {
-            Alert.alert('Invalid Username/Password', 'Please Provide Valid Credentials!')
-        }
+
     };
 
     return (
@@ -106,7 +114,7 @@ const styles = StyleSheet.create({
     logo: {
         height: 75,
         width: 75,
-        borderRadius:10
+        borderRadius: 10
     },
     input: {
         height: 50,
@@ -129,7 +137,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     newAccountContainer: {
-        flex:0.5,
+        flex: 0.5,
         width: '90%',
         justifyContent: 'flex-end',
         marginBottom: 20,
