@@ -6,14 +6,14 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { AntDesign } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
-import LoginScreen from './loginComponents/LoginPage';
+import LoginPage from './loginComponents/LoginPage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NewPostScreen from './screens/NewPostScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import { Octicons } from '@expo/vector-icons';
 import ReelScreen from './screens/ReelScreen';
-import SearchScreen from './screens/SearchScreen';
 import HomeScreen from './screens/HomeScreen';
+import SearchScreen from './screens/SearchScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -97,7 +97,7 @@ export default function HomePage() {
             )
         }
         else {
-            return <LoginScreen />
+            return <LoginPage />
         }
     }
 }

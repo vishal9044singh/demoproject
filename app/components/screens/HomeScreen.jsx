@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
-import HomeNavbar from '../navbars/HomeNavbar';
+import HomeNavbar from '../navbars/HomeScreenNavbar';
 import Stories from '../otherComponents/Stories';
 import Posts from '../otherComponents/Posts';
 
