@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Alert } from 'react-native';
-import { UserContext } from '../context/userContext';
+import { UserContext } from '../../context/userContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ForgotPasswordScreen from './ForgotPasswordScreen';
 import { NavigationContainer } from '@react-navigation/native';
@@ -45,7 +45,7 @@ function LoginComponent() {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.logoContainer}>
-                <Image style={styles.logo} source={require('../../assets/images/instagram.png')} />
+                <Image style={styles.logo} source={require('../../../assets/images/instagram.png')} />
             </View>
             <View style={styles.formContainer}>
                 <TextInput
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     logoContainer: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-end', // Align items from the start (top)
+        justifyContent: 'flex-end',
         height: '100%',
         width: '100%',
     },
