@@ -1,18 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import SearchScreenNavbar from '../navbars/SearchScreenNavbar';
 
 export default function SearchScreen() {
     return (
-        <View style={styles.container}>
-            <Text>This is Search Screen!</Text>
-        </View>
+        <SafeAreaView style={styles.container}>
+                <SearchScreenNavbar />
+                <ScrollView >
+                </ScrollView>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        position:'relative'
     }
 });

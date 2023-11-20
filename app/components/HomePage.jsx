@@ -28,7 +28,6 @@ export default function HomePage() {
                 console.log('value of access_Token is', access_Token);
                 if (access_Token) {
                     setUser(true);
-                    setIsLoading(false);
                 }
             }
             catch (e) {
@@ -41,15 +40,18 @@ export default function HomePage() {
     })
 
     if (isLoading) {
-        return <ActivityIndicator />
+        return <ActivityIndicator style={{ flex: 1 }} />
     }
     else {
         if (user) {
             return (
                 <NavigationContainer>
                     <Tab.Navigator
+                    activeColor="#e91e63"
+                    barStyle={{ backgroundColor: 'tomato' }}
                         screenOptions={{
-                            headerShown: false
+                            tabBarHideOnKeyboard: true,
+                            headerShown:false
                         }}>
                         <Tab.Screen name="HomeScreen" component={HomeScreen}
                             options={{
@@ -89,7 +91,6 @@ export default function HomePage() {
                                 tabBarIcon: ({ color }) => (
                                     <MaterialCommunityIcons name="account" color={color} size={26} />
                                 ),
-
                             }}
                         />
                     </Tab.Navigator>

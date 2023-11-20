@@ -8,7 +8,7 @@ export default function Posts() {
                 <View >
 
                 </View>
-                <MaterialCommunityIcons name="dots-vertical" size={24} color="black" />
+                {/* <MaterialCommunityIcons name="dots-vertical" size={24} color="black" /> */}
             </View>
             <View style={styles.postImage}>
                 <Image style={styles.postImage} source={require('../../../assets/images/man.jpg')} />
@@ -23,7 +23,7 @@ export default function Posts() {
 const styles = StyleSheet.create({
     container: {
         height: 500,
-        marginTop: 10,
+        marginTop: 5,
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
