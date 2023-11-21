@@ -1,7 +1,10 @@
-import { StyleSheet, Alert, Button, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Alert, View, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { UserContext } from '../../context/userContext';
+import ProfileScreenNavbar from '../navbars/ProfileScreenNavbar';
+
 
 export default function ProfileScreen() {
 
@@ -21,7 +24,6 @@ export default function ProfileScreen() {
         Alert.alert('Confirmation', 'Are you sure you want to Logout!', [
             {
                 text: 'Cancel',
-                // onPress: () => console.log('Cancel Pressed'),
                 style: 'cancel',
             },
             {
@@ -32,32 +34,36 @@ export default function ProfileScreen() {
     }
 
     return (
-        <View style={styles.container}>
-            <Text>This is Profile Screen!</Text>
-            <TouchableOpacity style={styles.loginButton} onPress={handleLogout} activeOpacity={0.9}>
-                <Text style={styles.buttonText}>Logout</Text>
-            </TouchableOpacity>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <ProfileScreenNavbar />
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.loginButton} onPress={handleLogout} activeOpacity={0.9}>
+                    <Text style={styles.buttonText}>Logout</Text>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flex: 1
+    },
+    buttonContainer: {
+        height: '100%',
+        alignItems: 'center'
     },
     loginButton: {
         backgroundColor: '#2196F3',
         padding: 10,
         borderRadius: 5,
         height: 45,
-        width: '90%',
-        marginBottom: 20,
+        width: '80%',
         justifyContent: 'center',
         paddingLeft: 10,
         borderRadius: 20,
+        position: 'absolute',
+        bottom: 80
     },
     buttonText: {
         color: '#fff',
