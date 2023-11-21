@@ -1,31 +1,56 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 
 export default function Stories() {
+
     return (
         <ScrollView style={styles.container} horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.item}>
-                <Text>Item 1</Text>
+                <View style={styles.storyImageContainer}>
+                    <Image style={styles.storyImage} source={require('../../../assets/images/man.jpg')} />
+                    <Text style={styles.storyName}>Vishal Singh</Text>
+                </View>
             </View>
             <View style={styles.item}>
-                <Text>Item 2</Text>
+                <View style={styles.storyImageContainer}>
+                    <Image style={styles.storyImage} source={require('../../../assets/images/man.jpg')} />
+                    <Text style={styles.storyName}>Utkarsh Saxena</Text>
+                </View>
             </View>
             <View style={styles.item}>
-                <Text>Item 3</Text>
+                <View style={styles.storyImageContainer}>
+                    <Image style={styles.storyImage} source={require('../../../assets/images/man.jpg')} />
+                    <Text style={styles.storyName}>Praveen Raturi</Text>
+                </View>
             </View>
             <View style={styles.item}>
-                <Text>Item 4</Text>
+                <View style={styles.storyImageContainer}>
+                    <Image style={styles.storyImage} source={require('../../../assets/images/man.jpg')} />
+                    <Text style={styles.storyName}>Arpit Rana</Text>
+                </View>
             </View>
             <View style={styles.item}>
-                <Text>Item 5</Text>
+                <View style={styles.storyImageContainer}>
+                    <Image style={styles.storyImage} source={require('../../../assets/images/man.jpg')} />
+                    <Text style={styles.storyName}>Vishal Singh</Text>
+                </View>
             </View>
             <View style={styles.item}>
-                <Text>Item 6</Text>
+                <View style={styles.storyImageContainer}>
+                    <Image style={styles.storyImage} source={require('../../../assets/images/man.jpg')} />
+                    <Text style={styles.storyName}>Vishal Singh</Text>
+                </View>
             </View>
             <View style={styles.item}>
-                <Text>Item 7</Text>
+                <View style={styles.storyImageContainer}>
+                    <Image style={styles.storyImage} source={require('../../../assets/images/man.jpg')} />
+                    <Text style={styles.storyName}>Vishal Singh</Text>
+                </View>
             </View>
             <View style={styles.item}>
-                <Text>Item 8</Text>
+                <View style={styles.storyImageContainer}>
+                    <Image style={styles.storyImage} source={require('../../../assets/images/man.jpg')} />
+                    <Text style={styles.storyName}>Vishal Singh</Text>
+                </View>
             </View>
         </ScrollView>
     );
@@ -37,12 +62,25 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     item: {
-        height:75,
-        width:75,
-        margin: 5,
-        backgroundColor: 'lightgrey',
+        height: 85,
+        width: 85,
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 100,
     },
+    storyImageContainer: {
+        height: '100%',
+        width: '100%',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    storyImage: {
+        height: '75%',
+        width: '75%',
+        borderRadius: 100
+    },
+    storyName: {
+        fontSize: 10
+    }
 });
