@@ -39,7 +39,6 @@ function LoginComponent() {
         catch (e) {
             console.log('Got error in login', e);
         }
-
     };
 
     return (
@@ -48,6 +47,7 @@ function LoginComponent() {
                 <Image style={styles.logo} source={require('../../../assets/images/instagram.png')} />
             </View>
             <View style={styles.formContainer}>
+            <Text style={{fontSize:11}}>Username: Vishal, Password:123456</Text>
                 <TextInput
                     style={styles.input}
                     placeholder="Username, Email Address or Mobile Number"
