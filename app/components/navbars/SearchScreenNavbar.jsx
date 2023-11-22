@@ -1,4 +1,4 @@
-import { View, StyleSheet, TextInput } from "react-native";
+import { View, StyleSheet, TextInput} from "react-native";
 import { useState } from "react";
 import { AntDesign } from '@expo/vector-icons';
 
@@ -22,7 +22,7 @@ export default function SearchScreenNavbar() {
 
 const styles = StyleSheet.create({
     navbar: {
-        height: '7%',
+        height: 50,
         width: '100%',
         flexDirection: "row",
         justifyContent: "space-between",
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     inputContainer: {
-        width: '75%',
+        width: '90%',
         height: '90%',
         flexDirection: 'row',
         justifyContent: "center",
@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     input: {
-        // backgroundColor: 'cyan',
         height: '100%',
         width: '85%',
         marginLeft: 5
