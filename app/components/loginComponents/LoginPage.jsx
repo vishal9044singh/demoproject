@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Alert } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Alert, ScrollView, ActivityIndicator } from 'react-native';
 import { UserContext } from '../../context/userContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ForgotPasswordScreen from './ForgotPasswordScreen';
@@ -9,10 +9,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createStackNavigator } from '@react-navigation/stack';
 import CreateAccountScreen from './CreateAccountScreen';
 
+
 const Stack = createStackNavigator();
 
 function LoginComponent() {
     const navigation = useNavigation();
+    const [loading, setLoading] = useState(false)
     const { setUser } = useContext(UserContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -28,9 +30,10 @@ function LoginComponent() {
                 Alert.alert('Invalid Details', 'Please Provide Password!');
             }
             else if (username == 'Vishal' && password == '123456') {
-                let res = await AsyncStorage.setItem('access_token','user');
-                console.log('value of logged in res in asyncstorage is',res);
+                setLoading(true)
+                await AsyncStorage.setItem('access_token', 'user');
                 setUser(true)
+                setLoading(false);
             }
             else {
                 Alert.alert('Invalid Username/Password', 'Please Provide Valid Credentials!')
@@ -47,22 +50,18 @@ function LoginComponent() {
                 <Image style={styles.logo} source={require('../../../assets/images/instagram.png')} />
             </View>
             <View style={styles.formContainer}>
-            <Text style={{fontSize:11}}>Username: Vishal, Password:123456</Text>
+                <Text style={{ fontSize: 11 }}>Username: Vishal, Password:123456</Text>
                 <TextInput
                     style={styles.input}
                     placeholder="Username, Email Address or Mobile Number"
                     value={username}
                     onChangeText={(text) => setUsername(text)}
                 />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Password"
-                    secureTextEntry={true}
-                    value={password}
-                    onChangeText={(text) => setPassword(text)}
-                />
-                <TouchableOpacity style={styles.loginButton} onPress={handleLogin} activeOpacity={0.9}>
-                    <Text style={styles.buttonText}>Login</Text>
+                <TextInput style={styles.input} placeholder="Password" secureTextEntry={true} value={password} onChangeText={(text) => setPassword(text)} />
+                <TouchableOpacity style={styles.loginButton} onPress={handleLogin} activeOpacity={0.9} >
+                    {
+                        loading ? <ActivityIndicator style={{ marginRight: 5 }} /> : <Text style={styles.buttonText}>Login</Text>
+                    }
                 </TouchableOpacity>
                 <Text style={styles.forgetPass} onPress={() => navigation.navigate('ForgotPasswordScreen')}>Forgot Password?</Text>
             </View>
@@ -133,6 +132,7 @@ const styles = StyleSheet.create({
         width: '90%',
         marginBottom: 20,
         justifyContent: 'center',
+        flexDirection: 'row',
         paddingLeft: 10,
         borderRadius: 20,
     },
